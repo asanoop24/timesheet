@@ -1,0 +1,32 @@
+<div class='timesheet'>
+  <div class='dateSlider'>
+    <span class='navigateDate previousDate' (click)='goToPreviousWeek()'></span>
+    <span class='date' [class.selected]='date==currentDate' *ngFor='let date of currentDates' (click)='selectDate(date)'>{{ date | date:'MMMM, dd'}} <br> {{ date | date:'EEEE'}}</span>
+    <span class='navigateDate nextDate' (click)='goToNextWeek()'></span>
+  </div>
+  
+  <div class='tasks'>
+
+    <div class='taskLabels'>
+      <span class='taskLabel projectName'>Project</span>
+      <span class='taskLabel taskName'>Task</span>
+      <span class='taskLabel timeSpent'>Time Spent</span>
+    </div>
+    
+    <div class='taskDetails' *ngFor='let task of currentDateTasks; let i=index'>
+      <select class='taskDetail projectName' [(ngModel)]='task.projectName' (change)='updateTask(task)'>
+          <option value="UHC">UHC</option>
+          <option value="NPS">NPS</option>
+      </select>
+      <input type=text class='taskDetail taskName' [(ngModel)]='task.name'/>
+      <input type=number class='taskDetail timeSpent' [(ngModel)]='task.timeSpent'/>
+    </div>
+
+    <span class='newTaskIcon' (click)='addNewTask()'></span>
+    <div class='buttons'>
+      <span class='button saveButton' (click)='onSave()'>Save</span>
+      <span class='button submitButton' (click)='onSubmit()'>Submit</span>
+    </div>
+  </div>
+
+</div>

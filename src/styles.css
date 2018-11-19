@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0px;   margin: 0px;
+    box-sizing: border-1box;
+    transition: all 0.3s;
+    font-family: 'Tajawal', sans-serif;
+}

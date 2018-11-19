@@ -1,18 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { MenuComponent } from './home/menu/menu.component';
+import { TimesheetComponent } from './timesheet/timesheet.component';
+import { WorkspaceComponent } from './home/workspace/workspace.component';
+
+import { DataService } from './services/data.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    MenuComponent,
+    TimesheetComponent,
+    WorkspaceComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
