@@ -1,0 +1,27 @@
+<div id='signIn'>
+  <form id='signInForm' [formGroup]='signInForm' (ngSubmit)='onSubmit()'>
+
+    <div class='signInInfo usernameInfo'>
+      <!-- <label for='username'>Username</label> -->
+      <input type='text' formControlName='email' placeholder='Enter Email'>
+      <span class='usernameIcon'></span>
+    </div>
+
+    <div class='signInInfo passwordInfo'>
+      <!-- <label for='password'>Password</label> -->
+      <input type='password' formControlName='password' placeholder='Enter Password'>
+      <span class='passwordIcon'></span>
+    </div>
+
+    <!-- <div> -->
+    <!-- </div> -->
+
+    <span class='errorMessage'>{{ errorMessage }}</span>
+    <button type='submit'>Sign In</button>
+    <div class='additionalOptions'>
+      <span class='additionalOption'><a>Forgot Password?</a></span>
+      <span class='additionalOption'><a>New User?</a></span>
+    </div>
+
+  </form>
+</div>

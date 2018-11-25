@@ -13,6 +13,7 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
 import { WorkspaceComponent } from './home/workspace/workspace.component';
 
 import { DataService } from './services/data.service';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { DataService } from './services/data.service';
     HomeComponent,
     MenuComponent,
     TimesheetComponent,
-    WorkspaceComponent
+    WorkspaceComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

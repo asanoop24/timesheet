@@ -13,10 +13,10 @@ var app = express();
 //   port     : process.env.RDS_PORT | 3306
 // });
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : '127.0.0.1',
   user     : 'admin',
   password : 'password',
-  port     : 3306
+  port     : 3300
 });
 
 connection.connect(function(err) {
@@ -56,16 +56,33 @@ app.post('/updateTimesheet', (request, response, next) => {
   console.log(tasks);
   values = [];
   for(let i=0; i< tasks.length; i++){
-    values.push([tasks[i].date, 1062136, 'Anoop Sharma', 1, tasks[i].projectName, 1, tasks[i].name, tasks[i].timeSpent]);
+    values.push([
+      tasks[i].date,
+      tasks[i].employee_id,
+      tasks[i].employee_name,
+      tasks[i].project_id,
+      tasks[i].project_name,
+      tasks[i].task_id,
+      tasks[i].task_name,
+      tasks[i].time_spent
+    ]);
   }
-  var sql = "INSERT INTO timesheet.timesheet VALUES ?";
-  console.log(values);
-  connection.query(sql, [values], (error, result) => {
+  let employee_id = tasks[0].employee_id;
+  var sql = `DELETE FROM timesheet.timesheet WHERE employee_id = ${employee_id}`;
+  connection.query(sql, (error, result) => {
     if(error) console.log({error: error});
     console.log(result);
+    connection.query(sql, [values], (error, result) => {
+      if(error) console.log({error: error});
+      console.log(result);
+      // connection.end();
+      response.status(200).send({message: 'Inserted Records'});
+    });
     // connection.end();
-    response.status(200).send({message: 'Inserted Records'});
-  })
+    // response.status(200).send({message: 'Inserted Records'});
+  });
+  console.log(values);
+  var sql = "INSERT INTO timesheet.timesheet VALUES ?";
 })
 
 app.get('/fetchTimesheet', (request, response, next) => {
@@ -73,14 +90,24 @@ app.get('/fetchTimesheet', (request, response, next) => {
   var employee_id = request.headers.employeeid;
   console.log(employee_id);
   var sql = `SELECT * FROM timesheet.timesheet WHERE employee_id=${employee_id}`;
-  // console.log(values);
-  connection.query(sql, (error, result) => {
+  connection.query(sql, (error, data) => {
     if(error) console.log({error: error});
-    console.log(result);
+    // console.log(data[0]['project_name']);
     // connection.end();
-    response.status(200).send({message: 'Inserted Records'});
+    response.status(200).send({message: 'Inserted Records', data: data});
   })
 })
+
+app.get('/fetchDates', (request, response, next) => {
+  var sql = 'SELECT * FROM timesheet.dates';
+  connection.query(sql, (error, data) => {
+    if(error) console.log({error: error});
+    // console.log(data[0]['project_name']);
+    // connection.end();
+    response.status(200).send({message: 'Inserted Records', data: data});
+  })
+})
+
 
 app.listen(port, () => {
     console.log(`Server is running at ${port}`);

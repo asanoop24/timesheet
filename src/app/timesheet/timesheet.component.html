@@ -1,32 +1,64 @@
 <div class='timesheet'>
-  <div class='dateSlider'>
-    <span class='navigateDate previousDate' (click)='goToPreviousWeek()'></span>
-    <span class='date' [class.selected]='date==currentDate' *ngFor='let date of currentDates' (click)='selectDate(date)'>{{ date | date:'MMMM, dd'}} <br> {{ date | date:'EEEE'}}</span>
-    <span class='navigateDate nextDate' (click)='goToNextWeek()'></span>
-  </div>
-  
-  <div class='tasks'>
-
-    <div class='taskLabels'>
-      <span class='taskLabel projectName'>Project</span>
-      <span class='taskLabel taskName'>Task</span>
-      <span class='taskLabel timeSpent'>Time Spent</span>
+  <div class='dateView' *ngIf='dateView'>
+    <div class='dateNavigation'>
+      <span class='navigateDate previousDate' (click)='goToPreviousDate()'></span>
+      <div class='dateSlider'>
+        <!-- <span class='date' [class.selected]='date==currentDate' *ngFor='let date of allDates' (click)='selectDate(date)'>{{ date | date:'MMMM, dd'}} <br> {{ date | date:'EEEE'}}</span> -->
+        <span class='date'>{{ currentDate | date:'MMMM, dd'}} <br> {{ currentDate | date:'EEEE'}}</span>
+        <span class='totalHours'>{{ getTotalHoursSpent(currentTasks, currentDate) }}</span>
+        <span class='totalHoursLabel'>Hrs</span>
+        <!-- <span class='date'>{{ value }}</span> -->
+      </div>
+      <span class='navigateDate nextDate' (click)='goToNextDate()'></span>
     </div>
     
-    <div class='taskDetails' *ngFor='let task of currentDateTasks; let i=index'>
-      <select class='taskDetail projectName' [(ngModel)]='task.projectName' (change)='updateTask(task)'>
-          <option value="UHC">UHC</option>
-          <option value="NPS">NPS</option>
-      </select>
-      <input type=text class='taskDetail taskName' [(ngModel)]='task.name'/>
-      <input type=number class='taskDetail timeSpent' [(ngModel)]='task.timeSpent'/>
-    </div>
+    <div class='tasks'>
 
-    <span class='newTaskIcon' (click)='addNewTask()'></span>
-    <div class='buttons'>
-      <span class='button saveButton' (click)='onSave()'>Save</span>
-      <span class='button submitButton' (click)='onSubmit()'>Submit</span>
+      <div class='taskLabels'>
+        <span class='taskLabel projectName'>Project</span>
+        <span class='taskLabel taskName'>Task</span>
+        <span class='taskLabel timeSpent'>Time Spent</span>
+      </div>
+      
+      <div class='taskDetails'>
+        <div class='task' *ngFor='let task of currentTasks; let i=index'>
+          <select class='taskDetail projectName' [(ngModel)]='task.project_name' (change)='updateTask(task)'>
+              <option value="UHC">UHC</option>
+              <option value="NPS">NPS</option>
+          </select>
+          <input type=text class='taskDetail taskName' [(ngModel)]='task.task_name'/>
+          <input type=number class='taskDetail timeSpent' [(ngModel)]='task.time_spent'/>
+        </div>
+      </div>
+
+      <span class='newTaskIcon' (click)='addNewTask()'></span>
+      <div class='buttons'>
+        <span class='button saveButton' (click)='onSave()'>Save</span>
+        <span class='button submitButton' (click)='onSubmit()'>Submit</span>
+      </div>
     </div>
   </div>
 
+  <div class='calendarView' *ngIf='!dateView'>
+    <div class='monthNavigation'>
+      <span class='navigateMonth previousMonth' (click)='goToPreviousMonth()'></span>
+      <div class='monthSlider'>
+        <span class='month'>{{ currentDate | date:'MMMM, yyyy'}}</span>
+        <!-- <span class='totalHours'>{{ getTotalHoursSpent(currentTasks, currentMonth) }}</span> -->
+        <!-- <span class='totalHoursLabel'>Hrs</span> -->
+      </div>
+      <span class='navigateMonth nextMonth' (click)='goToNextMonth()'></span>
+    </div>
+    <div class='calendarDates'>
+      <div class='calendarDateCard' *ngFor='let date of emptyCalendarDates'></div>
+      <div class='calendarDateCard' *ngFor='let date of currentCalendarDates' (click)='dateDrillDown(date)'>
+        <span class='calendarDate'>{{ date | date: 'MMM d, yyyy' }}</span>
+        <span class='calendarWeekday'>{{ date | date: 'EEEE' }}</span>
+        <span class='calendarHoursLabel'>{{ getTotalHoursSpent(allTasks, date) }}<span>  h</span></span>
+      </div>
+    </div>
+      
+  </div>
+
+  <button (click)='dateView = !dateView'>Switch View</button>
 </div>

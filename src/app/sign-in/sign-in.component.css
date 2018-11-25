@@ -1,0 +1,92 @@
+div#signIn{
+    position: absolute;
+    /* padding-top: 50px;  padding-bottom: 50px; padding-left: 20px; padding-right: 50px; */
+    /* padding-top: 200px; */
+    /* align-items: center; */
+    margin: auto;
+    /* left: */
+    display: flex;  flex-direction: column;
+    justify-content: center;
+    width: 100%; height: 100%;
+    /* background-color: RGBA(0,0,0,0.6);  color: white; */
+    background-color: RGBA(225,225,225,0.8);
+  }
+  
+  form#signInForm{
+    position: absolute;
+    left: 37.5%;
+    display: flex;  flex-direction: column;
+    width: 25%; height: 50%;
+  }
+  
+  div.signInInfo{
+    display: flex;  flex-direction: row;  justify-content: space-between;
+    /* height: 30px; */
+    margin-bottom: 30px;
+    border-bottom: 1px solid RGBA(0,0,0,1)
+  }
+  
+  div.signInInfo label{
+    font-weight: 400; font-size: 20px;
+  }
+  div.signInInfo span.usernameIcon{
+    width: 20px;  height: 30px;
+    background-image: url('./../../assets/username.png');
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+  }
+  div.signInInfo span.passwordIcon{
+    width: 15px;  height: 30px;
+    background-image: url('./../../assets/password.png');
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+  }
+  div.signInInfo input{
+    font-weight: 300; font-size: 20px;
+    background-color: RGBA(0,0,0,0);  color: RGBA(0,0,0,1);
+    border: 0px;  outline: 0;
+  }
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-weight: 300; font-size: 20px;
+  }
+  div#signIn button[type='submit']{
+    align-self: center;
+    width: 100px;  height: 40px;
+    margin-top: 20px; margin-bottom: 20px;  border: 1px solid RGBA(0,0,0,1);
+    background-color: RGBA(0,0,0,0);  color: RGBA(0,0,0,1);
+    font-weight: 300; font-size: 20px;
+    transition: 0.3s;
+    outline: 0;
+  }
+  
+  div#signIn button[type='submit']:hover{
+    /* background-color: RGBA(246,139,31,1); color: ghostwhite; */
+    background-color: RGBA(0,0,0,0.8); color: ghostwhite;
+    border: 0px;
+    cursor: pointer;
+  }
+  
+  
+  div.additionalOptions{
+    display: flex;
+    justify-content: space-between;
+  }
+  span.additionalOption{
+    cursor: pointer;
+  }
+  span.additionalOption a{
+    font-size: 17px;  font-weight: 400;
+    color: RGBA(201,51,47,0.6);
+    transition: color 0.4s;
+  }
+  span.additionalOption a:hover{
+    font-weight: 400;
+    color: RGBA(201,51,47,1);
+  }
+  
+  span.errorMessage{
+    display: inline-block;
+    width: 100%;
+    min-height: 25px;
+    /* height: 100px; */
+    color: RGBA(201,51,47,1);
+  }
+  

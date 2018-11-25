@@ -42,5 +42,8 @@ DROP TABLE IF EXISTS employees;
 create table employees
 (
     employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    employee_name TEXT
+    employee_name TEXT,
+    employee_email TEXT,
+    employee_password TEXT,
+    employee_role TEXT
 );

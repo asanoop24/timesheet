@@ -3,6 +3,7 @@ div.menu{
     position: relative;
     display: flex;  flex-direction: column;
     background-color: #455672;
+    background-color: rgba(50,50,50,1);
 }
 
 div.menuItem{

@@ -3,12 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 // import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
 
-  { path: '', redirectTo:  '/home', pathMatch: 'full' },
+  
+  { path: '', redirectTo:  '/login', pathMatch: 'full' },
+  { path: 'login', component: SignInComponent },
   { path: 'home', component: HomeComponent, children: [
     { path: 'timesheet', component: TimesheetComponent },
   ] }
