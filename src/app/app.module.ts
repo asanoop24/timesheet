@@ -14,6 +14,7 @@ import { WorkspaceComponent } from './home/workspace/workspace.component';
 
 import { DataService } from './services/data.service';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MenuComponent,
     TimesheetComponent,
     WorkspaceComponent,
-    SignInComponent
+    SignInComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

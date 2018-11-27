@@ -18,6 +18,13 @@ var connection = mysql.createConnection({
   password : 'password',
   port     : 3300
 });
+// var connection = mysql.createConnection({
+//   host     : 'timesheet.csejzry7iz7k.ap-south-1.rds.amazonaws.com',
+//   user     : 'admin',
+//   password : 'password',
+//   port     : 3306
+// });
+
 
 connection.connect(function(err) {
   if (err) {
@@ -48,6 +55,23 @@ app.get('/', (request, response, next) => {
     console.log(result);
     // connection.end();
     response.status(200).send({message: 'Inserted Records'});
+  })
+})
+
+app.post('/login', (request, response, next) => {
+  console.log(request.body);
+  var email = request.body.email;
+  var password = request.body.password;
+  var sql = `SELECT * FROM timesheet.employees WHERE employee_email="${email}" AND employee_password="${password}"`;
+  connection.query(sql, (error, result) => {
+    if(error) console.log({error: error});
+    else if(result.length == 0){
+      response.status(400).send({error: 'user not found'});
+    }
+    else {
+      console.log(result);
+      response.status(200).send({employee: result});
+    }
   })
 })
 

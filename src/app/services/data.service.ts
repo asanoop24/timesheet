@@ -24,6 +24,21 @@ export class DataService {
     }
 
 
+    login(email, password){
+        let url     = 'http://localhost:3000/login';
+        let body    = {
+            email: email,
+            password: password
+        };
+        let headers = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Accept': 'application/json'
+            })
+          };
+        return this.http.post(url, body, headers);
+    }
+
         
     submitTimesheet(tasks){
         console.log(tasks);

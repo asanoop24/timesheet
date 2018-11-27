@@ -23,11 +23,19 @@ span.menuItemIcon.homeIcon{
     background-image: url('./../../../assets/icons8-home-page-100.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 35px;
 }
-span.menuItemIcon.editIcon{
+span.menuItemIcon.timesheetIcon{
     background-image: url('./../../../assets/icons8-schedule-100.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 35px;
 }
 span.menuItemIcon.reportsIcon{
     background-image: url('./../../../assets/icons8-combo-chart-filled-100.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 35px;
+}
+span.menuItemIcon.editIcon{
+    background-image: url('./../../../assets/icons8-pencil-96.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 35px;
+}
+span.menuItemIcon.logoutIcon{
+background-image: url('./../../../assets/close-white.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 35px;
 }

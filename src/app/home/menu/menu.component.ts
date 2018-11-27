@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  role: string = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.role = JSON.parse(localStorage.getItem('employee'))['employee_role'];
+    console.log(this.role);
   }
 
+  onLogout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/login');
+  }
 }

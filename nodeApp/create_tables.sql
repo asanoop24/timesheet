@@ -14,6 +14,16 @@ create table timesheet
     time_spent INT
 );
 
+DROP TABLE IF EXISTS dates;
+create table times 
+(   
+    date DATE,
+    employee_id INT,
+    project_id INT,
+    task_id INT,
+    time_spent FLOAT
+);
+
 DROP TABLE IF EXISTS times;
 create table times 
 (   
@@ -45,5 +55,6 @@ create table employees
     employee_name TEXT,
     employee_email TEXT,
     employee_password TEXT,
-    employee_role TEXT
+    employee_role TEXT,
+    manager_name TEXT
 );

@@ -4,11 +4,19 @@
     <!-- <span class='menuItemLabel'>Add</span> -->
   </div>
   <div class='menuItem' routerLink='/home/timesheet' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
-    <span class='menuItemIcon editIcon'></span>
+    <span class='menuItemIcon timesheetIcon'></span>
     <!-- <span class='menuItemLabel'>Edit</span> -->
   </div>
   <div class='menuItem'>
     <span class='menuItemIcon reportsIcon'></span>
+    <!-- <span class='menuItemLabel'>Report</span> -->
+  </div>
+  <div class='menuItem' *ngIf='role=="admin"' routerLink='/home/projects' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
+    <span class='menuItemIcon editIcon'></span>
+    <!-- <span class='menuItemLabel'>Report</span> -->
+  </div>
+  <div class='menuItem' (click)='onLogout()'>
+    <span class='menuItemIcon logoutIcon'></span>
     <!-- <span class='menuItemLabel'>Report</span> -->
   </div>
 </div>
