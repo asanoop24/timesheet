@@ -3,5 +3,8 @@
     padding: 0px;   margin: 0px;
     box-sizing: border-1box;
     transition: all 0.3s;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Open Sans', 'Tajawal', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }

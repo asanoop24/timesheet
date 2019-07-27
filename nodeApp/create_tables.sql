@@ -15,13 +15,9 @@ create table timesheet
 );
 
 DROP TABLE IF EXISTS dates;
-create table times 
+create table dates 
 (   
-    date DATE,
-    employee_id INT,
-    project_id INT,
-    task_id INT,
-    time_spent FLOAT
+    date DATE
 );
 
 DROP TABLE IF EXISTS times;
@@ -51,10 +47,11 @@ create table projects
 DROP TABLE IF EXISTS employees;
 create table employees
 (
-    employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT NOT NULL PRIMARY KEY,
     employee_name TEXT,
     employee_email TEXT,
     employee_password TEXT,
     employee_role TEXT,
+    manager_id TEXT,
     manager_name TEXT
 );

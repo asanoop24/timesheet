@@ -27,7 +27,12 @@
               <option value="NPS">NPS</option>
           </select>
           <input type=text class='taskDetail taskName' [(ngModel)]='task.task_name'/>
-          <input type=number class='taskDetail timeSpent' [(ngModel)]='task.time_spent'/>
+          <!-- <input type=number class='taskDetail timeSpent' [(ngModel)]='task.time_spent'/> -->
+          <div class='taskDetail timeSpent'>
+            <span class='minus incIcon' (click)='task.time_spent = task.time_spent > 0 ? task.time_spent - 1 : task.time_spent;'></span>
+            <input type=number readonly class='timeSpentValue' [(ngModel)]='task.time_spent'/>
+            <span class='plus incIcon' (click)='task.time_spent = task.time_spent + 1;'></span>
+          </div>
         </div>
       </div>
 
@@ -51,10 +56,12 @@
     </div>
     <div class='calendarDates'>
       <div class='calendarDateCard' *ngFor='let date of emptyCalendarDates'></div>
-      <div class='calendarDateCard' *ngFor='let date of currentCalendarDates' (click)='dateDrillDown(date)'>
-        <span class='calendarDate'>{{ date | date: 'MMM d, yyyy' }}</span>
-        <span class='calendarWeekday'>{{ date | date: 'EEEE' }}</span>
-        <span class='calendarHoursLabel'>{{ getTotalHoursSpent(allTasks, date) }}<span>  h</span></span>
+      <div class='calendarDateCard' [class.today]='date==today' *ngFor='let date of currentCalendarDates' (click)='dateDrillDown(date)'>
+        <!-- <span class='calendarDate'>{{ date | date: 'MMM d, yyyy' }}</span> -->
+        <span class='calendarDate'>{{ date | date: 'EEE' }}, {{ date | date: 'dd' }}</span>
+        <br>
+        <!-- <span class='calendarWeekday'>{{ date | date: 'EEEE' }}</span> -->
+        <span class='calendarHoursLabel'>{{ getTotalHoursSpent(allTasks, date) }}<span> h</span></span>
       </div>
     </div>
       

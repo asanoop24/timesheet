@@ -15,6 +15,7 @@ export class TimesheetComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
   allDates: string[];
+  allMonths: number[];
   currentDates: Object[];
   currentWeek  = 1;
   currentDate: string;
@@ -25,6 +26,9 @@ export class TimesheetComponent implements OnInit {
   taskSummary;
   dateView: boolean = false;
   currentMonth: number;
+  employeeId: string;
+  employeeName: string;
+  today: string;
 
   allCalendarDates;
   currentCalendarDates;
@@ -32,13 +36,15 @@ export class TimesheetComponent implements OnInit {
 
   ngOnInit() {
     this.allDates = this.dataService.convertToDate(this.dataService.allDatesString);
+    this.allMonths= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     this.currentDates = this.allDates[this.currentWeek.toString()];
-    this.currentDate = moment(this.allDates['3']).format('YYYY-MM-DD');
+    this.currentDate = moment(new Date()).format('MMMM DD, YYYY');
     this.currentMonth = new Date(moment(this.currentDate).format('YYYY-MM-DD')).getMonth() + 1;
-    // console.log(new Date(moment(this.currentDate).format('YYYY-MM-DD')));
-    // console.log('Month: ', this.currentMonth);
-
-    this.dataService.fetchTimesheet(1062136)
+    this.today = moment(new Date()).format('YYYY-MM-DD');
+    console.log(this.today);
+    this.employeeId = JSON.parse(localStorage.getItem('employee'))['employee_id'];
+    this.employeeName = JSON.parse(localStorage.getItem('employee'))['employee_name'];
+    this.dataService.fetchTimesheet(this.employeeId)
     .subscribe(
       data => {
         this.allTasks = data['data'];
@@ -104,8 +110,8 @@ export class TimesheetComponent implements OnInit {
   addNewTask(){
     let newTask: Task = {
       date: this.currentDate,
-      employee_id: '1062136',
-      employee_name: 'Anoop Sharma',
+      employee_id: this.employeeId,
+      employee_name: this.employeeName,
       project_id: '1',
       project_name: '',
       task_id: this.currentTasks.length,
@@ -144,6 +150,8 @@ export class TimesheetComponent implements OnInit {
 
   onSubmit(){
     console.log(this.allTasks);
+    this.allTasks = this.allTasks.filter((task) => task.project_name != '' && task.task_name != '');
+    console.log(this.allTasks);
     this.dataService.submitTimesheet(this.allTasks);
   }
 
@@ -154,9 +162,9 @@ export class TimesheetComponent implements OnInit {
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
   goToPreviousMonth(){
-    this.currentDate  = new Date(<string>moment(this.currentDate).subtract(1, 'months'));
-    this.currentMonth = new Date(moment(this.currentDate).format('YYYY-MM-DD')).getMonth() + 1;
-    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth() + 1 == this.currentMonth);
+    this.currentDate  = moment(this.currentDate).subtract(1, 'months').format('YYYY-MM-DD');
+    this.currentMonth = parseInt(moment(this.currentDate).format('MM'));
+    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth()+1 == this.currentMonth);
     let emptyDates = moment(this.currentCalendarDates[0]).weekday() - 2;
     this.emptyCalendarDates = [];
     for(let i=0;i<=emptyDates;i++){
@@ -164,9 +172,10 @@ export class TimesheetComponent implements OnInit {
     }
   }
   goToNextMonth(){
-    this.currentDate  = new Date(<string>moment(this.currentDate).add(1, 'months'));
-    this.currentMonth = new Date(moment(this.currentDate).format('YYYY-MM-DD')).getMonth() + 1;
-    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth() + 1 == this.currentMonth);
+    this.currentDate  = moment(this.currentDate).add(1, 'months').format('YYYY-MM-DD');
+    this.currentMonth = parseInt(moment(this.currentDate).format('MM'));
+    console.log(this.currentMonth);
+    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth()+1 == this.currentMonth);
     let emptyDates = moment(this.currentCalendarDates[0]).weekday() - 2;
     this.emptyCalendarDates = [];
     for(let i=0;i<=emptyDates;i++){

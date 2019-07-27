@@ -12,11 +12,27 @@ var app = express();
 //   password : process.env.RDS_PASSWORD | 'password',
 //   port     : process.env.RDS_PORT | 3306
 // });
+
+// var mysqlx = require('@mysql/xdevapi');
+
+// // Connect to server on localhost
+// var config = {
+//   user: 'root',
+//   password: 'Summer24',
+//   host: 'localhost',
+//   port: '33060'
+// }
+// mysqlx.getSession(config)
+// .then(session => session.getSchemas()
+//   .then(schema => console.log(schema)))
+// .catch(e => console.log(e));
+
+
 var connection = mysql.createConnection({
   host     : '127.0.0.1',
   user     : 'admin',
   password : 'password',
-  port     : 3300
+  port     : 3306
 });
 // var connection = mysql.createConnection({
 //   host     : 'timesheet.csejzry7iz7k.ap-south-1.rds.amazonaws.com',
@@ -41,27 +57,28 @@ app.use(bodyParser.json({extended: false}));
 
 app.get('/', (request, response, next) => {
   // var sql = "INSERT INTO timesheet.employees (employee_id, employee_name) VALUES ?";
-  var sql = "INSERT INTO timesheet.employees SET ?";
-  var employee = {
-    employee_id: 101,
-    employee_name: 'B'
-  }
-  // var values = [
-  //   [1, 'Anoop Sharma'],
-  //   [2, 'Anant Kumar']
-  // ];
-  connection.query(sql, [employee], (error, result) => {
-    if(error) console.log({error: error});
-    console.log(result);
-    // connection.end();
-    response.status(200).send({message: 'Inserted Records'});
-  })
+  // var sql = "INSERT INTO timesheet.employees SET ?";
+  // var employee = {
+  //   employee_id: 101,
+  //   employee_name: 'B'
+  // }
+  // // var values = [
+  // //   [1, 'Anoop Sharma'],
+  // //   [2, 'Anant Kumar']
+  // // ];
+  // connection.query(sql, [employee], (error, result) => {
+  //   if(error) console.log({error: error});
+  //   console.log(result);
+  //   // connection.end();
+  //   response.status(200).send({message: 'Inserted Records'});
+  // })
 })
 
 app.post('/login', (request, response, next) => {
   console.log(request.body);
   var email = request.body.email;
   var password = request.body.password;
+  console.log(email, password);
   var sql = `SELECT * FROM timesheet.employees WHERE employee_email="${email}" AND employee_password="${password}"`;
   connection.query(sql, (error, result) => {
     if(error) console.log({error: error});
