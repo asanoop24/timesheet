@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 var port = 3000;
+var host = '0.0.0.0';
 var app = express();
 
 // var connection = mysql.createConnection({
@@ -34,12 +35,13 @@ var connection = mysql.createConnection({
   password : 'password',
   port     : 3306
 });
-// var connection = mysql.createConnection({
-//   host     : 'timesheet.csejzry7iz7k.ap-south-1.rds.amazonaws.com',
-//   user     : 'admin',
-//   password : 'password',
-//   port     : 3306
-// });
+var connection = mysql.createConnection({
+  // host     : 'timesheet.csejzry7iz7k.ap-south-1.rds.amazonaws.com',
+  host     : 'adhocs:asia-south1:timesheet',
+  user     : 'admin',
+  password : 'password',
+  port     : 3306
+});
 
 
 connection.connect(function(err) {
@@ -56,6 +58,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({extended: false}));
 
 app.get('/', (request, response, next) => {
+  console.log('RECEIVED');
   // var sql = "INSERT INTO timesheet.employees (employee_id, employee_name) VALUES ?";
   // var sql = "INSERT INTO timesheet.employees SET ?";
   // var employee = {
@@ -150,8 +153,8 @@ app.get('/fetchDates', (request, response, next) => {
 })
 
 
-app.listen(port, () => {
-    console.log(`Server is running at ${port}`);
+app.listen(port, host, () => {
+    console.log(`Server is running on ${host} at ${port}`);
 })
 
 module.exports.app = app;

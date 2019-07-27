@@ -13,7 +13,7 @@ export class DataService {
     //     2: ['2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16']
     // };
     allDatesString: string[] = ['2018-11-05', '2018-11-06', '2018-11-07', '2018-11-08', '2018-11-09', '2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16'];
-
+    
     convertToDate(stringArray){
         let dateArray = [];
         stringArray.forEach((date) => {
@@ -25,7 +25,7 @@ export class DataService {
 
 
     login(email, password){
-        let url     = 'http://localhost:3000/login';
+        let url     = 'http://34.93.127.51:3000/login';
         let body    = {
             email: email,
             password: password
@@ -42,7 +42,7 @@ export class DataService {
         
     submitTimesheet(tasks){
         console.log(tasks);
-        let url     = 'http://localhost:3000/updateTimesheet';
+        let url     = 'http://34.93.127.51:3000/updateTimesheet';
         let body    = {
             tasks: tasks
         };
@@ -61,7 +61,7 @@ export class DataService {
 
     fetchTimesheet(employeeId){
         console.log(employeeId);
-        const url     = 'http://localhost:3000/fetchTimesheet';
+        const url     = 'http://34.93.127.51:3000/fetchTimesheet';
         const headers = {
             headers: new HttpHeaders({
                 'employeeId'  : employeeId.toString()
@@ -71,7 +71,7 @@ export class DataService {
     }
     
     fetchDates(){
-        const url     = 'http://localhost:3000/fetchDates';
+        const url     = 'http://34.93.127.51:3000/fetchDates';
         const headers = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
