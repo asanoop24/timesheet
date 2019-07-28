@@ -1,0 +1,28 @@
+<div class='reportView'>
+  <div class='employeeView'>
+
+    <div class='dateSelection'>
+      <span>From <input class='date startDate' type="date" [(ngModel)]='startDate' (change)='onChange()'></span>
+      <span>To <input class='date endDate' type="date" [(ngModel)]='endDate' (change)='onChange()'></span>
+      <!-- <a [href]='safeDownloadURL' download='data.json' (click)='downloadReport()'>download JSON</a> -->
+      <a [href]='safeDownloadURL' download='Timesheet.csv' (click)='downloadReport()'>Download</a>
+    </div>
+
+    <div class='employees'>
+      <div class='projects'>
+          <div class='project'></div>
+          <div class='project' *ngFor='let proj of projectNames'>{{ proj }}</div>
+      </div>
+      <div class='employee' *ngFor='let emp of reporteeNames'>
+        <div class='nameCard'>{{ emp }}</div>
+        <div class='timeCard' *ngFor='let proj of projectNames'>
+          <div *ngFor='let item of aggregatedReport'>
+            <div *ngIf='item.reportee == emp && item.project == proj'>
+              <span>{{ item.time_spent }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

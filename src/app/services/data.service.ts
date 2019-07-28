@@ -13,7 +13,9 @@ export class DataService {
     //     2: ['2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16']
     // };
     allDatesString: string[] = ['2018-11-05', '2018-11-06', '2018-11-07', '2018-11-08', '2018-11-09', '2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16'];
-    
+    // nodeApp = 'http://127.0.0.1:3000';
+    nodeApp = 'http://34.93.143.209:3000';
+
     convertToDate(stringArray){
         let dateArray = [];
         stringArray.forEach((date) => {
@@ -25,7 +27,7 @@ export class DataService {
 
 
     login(email, password){
-        let url     = 'http://34.93.127.51:3000/login';
+        let url     = `${this.nodeApp}/login`;
         let body    = {
             email: email,
             password: password
@@ -42,7 +44,7 @@ export class DataService {
         
     submitTimesheet(tasks){
         console.log(tasks);
-        let url     = 'http://34.93.127.51:3000/updateTimesheet';
+        let url     = `${this.nodeApp}/updateTimesheet`;
         let body    = {
             tasks: tasks
         };
@@ -61,7 +63,7 @@ export class DataService {
 
     fetchTimesheet(employeeId){
         console.log(employeeId);
-        const url     = 'http://34.93.127.51:3000/fetchTimesheet';
+        const url     = `${this.nodeApp}/fetchTimesheet`;
         const headers = {
             headers: new HttpHeaders({
                 'employeeId'  : employeeId.toString()
@@ -71,11 +73,26 @@ export class DataService {
     }
     
     fetchDates(){
-        const url     = 'http://34.93.127.51:3000/fetchDates';
+        const url     = `${this.nodeApp}/fetchDates`;
         const headers = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
                 'Accept': 'application/json'
+            })
+          };
+        return this.http.get<any[]>(url, headers);
+    }
+
+    fetchReport(employeeId, startDate, endDate){
+        console.log(employeeId, startDate, endDate);
+        const url     = `${this.nodeApp}/fetchTimesheetByReportees`;
+        const headers = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Accept': 'application/json',
+                'employeeId'  : employeeId.toString(),
+                'startDate'  : startDate.toString(),
+                'endDate'  : endDate.toString()
             })
           };
         return this.http.get<any[]>(url, headers);

@@ -5,6 +5,7 @@ const cors = require('cors');
 
 var port = 3000;
 var host = '0.0.0.0';
+// var host = '127.0.0.1';
 var app = express();
 
 // var connection = mysql.createConnection({
@@ -35,13 +36,13 @@ var connection = mysql.createConnection({
   password : 'password',
   port     : 3306
 });
-var connection = mysql.createConnection({
-  // host     : 'timesheet.csejzry7iz7k.ap-south-1.rds.amazonaws.com',
-  host     : 'adhocs:asia-south1:timesheet',
-  user     : 'admin',
-  password : 'password',
-  port     : 3306
-});
+// var connection = mysql.createConnection({
+//   // host     : 'timesheet.csejzry7iz7k.ap-south-1.rds.amazonaws.com',
+//   host     : 'adhocs:asia-south1:timesheet',
+//   user     : 'admin',
+//   password : 'password',
+//   port     : 3306
+// });
 
 
 connection.connect(function(err) {
@@ -147,6 +148,20 @@ app.get('/fetchDates', (request, response, next) => {
   connection.query(sql, (error, data) => {
     if(error) console.log({error: error});
     // console.log(data[0]['project_name']);
+    // connection.end();
+    response.status(200).send({message: 'Inserted Records', data: data});
+  })
+})
+
+app.get('/fetchTimesheetByReportees', (request, response, next) => {
+  var employee_id = request.headers.employeeid;
+  var start_date = request.headers.startdate;
+  var end_date = request.headers.enddate;
+  console.log(employee_id, start_date, end_date);
+  var timesheet = `SELECT * FROM timesheet.timesheet WHERE date BETWEEN '${start_date}' AND '${end_date}' AND (employee_id = ${employee_id} OR employee_id IN (SELECT DISTINCT employee_id FROM timesheet.employees WHERE manager_id=${employee_id}))`;
+  connection.query(timesheet, (error, data) => {
+    if(error) console.log({error: error});
+    console.log(data);
     // connection.end();
     response.status(200).send({message: 'Inserted Records', data: data});
   })

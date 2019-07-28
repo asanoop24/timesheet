@@ -220,28 +220,32 @@ div.calendarDates{
     width: calc(80% - 50px); height: 500px;
 }
 div.calendarDateCard{
-    width: 13%;   height: 90px;  border: 0.5px solid rgb(69, 86, 114, 0.3);
-    background-color: rgba(245,245,245,1);   
-    border-radius: 5px;
-    display: flex;  flex-direction: column;
+    width: 13%;   height: 90px;  border: 0.1px solid rgba(200, 200, 200, 0.5);
+    /* background-color: rgba(245,245,245,1);    */
+    /* border-radius: 5px; */
+    display: flex;  flex-direction: column; justify-content: space-between;
     padding: 5px;   cursor: pointer;
 }
 div.calendarDateCard:hover, div.calendarDateCard.today{
     background-color: #455672;
-    background-color: rgba(50,50,50,1); opacity: 0.9;
+    background-color: rgba(200,200,200,1);
+    color: rgba(0,0,0,0.8);   background-color: #f7eb47
 }
 span.calendarHoursLabel{
+    display: flex;  flex-direction: row;    justify-content: flex-end; align-items: baseline;
     font-size: 35px;    font-weight: 300;
     right: 0px;
 }
 span.calendarHoursLabel span{
-    font-size: 15px;
+    font-size: 12px;
 }
 div.calendarDateCard span{
-    color: rgba(100,100,100,1);
+    color: rgba(150,150,150,1);
+    font-weight: 200;
 }
 div.calendarDateCard:hover span, div.calendarDateCard.today span{
-    color: rgba(200,200,200,1);
+    color: rgba(200,200,200,0.8);
+    color: rgba(10,10,10,1);
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

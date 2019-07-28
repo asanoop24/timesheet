@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
+import { ReportsComponent } from './reports/reports.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'login', component: SignInComponent },
   { path: 'home', component: HomeComponent, children: [
     { path: 'timesheet', component: TimesheetComponent },
+    { path: 'reports', component: ReportsComponent },
     { path: 'projects', component: ProjectsComponent },
   ] }
 //   { path: 'user-dashboard', component: UserDashboardComponent, children:[
