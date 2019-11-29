@@ -2,6 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+
+dotenv.config();
+console.log(`Your env is ${process.env.DEVELOPMENT}`);
+
+// const env = process.env.NODE_ENV;
+// console.log(`Your port is ${env}`);
 
 var port = 3000;
 var host = '0.0.0.0';
@@ -31,9 +39,9 @@ var app = express();
 
 
 var connection = mysql.createConnection({
-  host     : '127.0.0.1',
-  user     : 'root',
-  password : 'Analytics@01',
+  host     : process.env.MYSQL_HOST,
+  user     : process.env.MYSQL_USERNAME,
+  password : process.env.MYSQL_PASSWORD,
   port     : 3306
 });
 // var connection = mysql.createConnection({
@@ -194,10 +202,16 @@ app.post('/updateProjects', (request, response, next) => {
     sql = "INSERT INTO timesheet.projects VALUES ?";
     connection.query(sql, [values], (error, result) => {
       if(error) console.log({error: error});
-      // console.log(result);
+      sql = "UPDATE timesheet.timesheet A LEFT JOIN timesheet.projects B ON A.project_id = B.project_id SET A.project_name = B.project_name";
+      connection.query(sql, (error, result) => {
+        if(error) console.log({error: error});
+        console.log('updated the records', sql);
+        // connection.end();
+        response.status(200).send({message: 'Inserted Records'});
+      });  
       console.log('inserted the records', sql);
       // connection.end();
-      response.status(200).send({message: 'Inserted Records'});
+      // response.status(200).send({message: 'Inserted Records'});
     });
     // connection.end();
     // response.status(200).send({message: 'Inserted Records'});

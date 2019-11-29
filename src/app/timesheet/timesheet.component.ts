@@ -6,6 +6,7 @@ import { Project } from './../models/project.model';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { projection } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-timesheet',
@@ -97,9 +98,10 @@ export class TimesheetComponent implements OnInit {
 
   goToPreviousDate(){
     this.currentDate  = <string>moment(this.currentDate).subtract(1, 'days').format('YYYY-MM-DD');
-    this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate)
+    this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate);
+    this.currentTasks.forEach(task => task.project_name = this.allProjects.filter(project => project.project_id == task.project_id)[0]['project_name']);
     console.log(this.currentDate);
-    console.log(this.currentTasks);
+    console.log('current tasks', this.currentTasks);
     console.log(this.allTasks);
     // this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate)
     // this.allTasks = this.allTasks.filter((task) => task.date != this.currentDate)
@@ -107,7 +109,8 @@ export class TimesheetComponent implements OnInit {
   }
   goToNextDate(){
     this.currentDate = <string>moment(this.currentDate).add(1, 'days').format('YYYY-MM-DD');
-    this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate)
+    this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate);
+    this.currentTasks.forEach(task => task.project_name = this.allProjects.filter(project => project.project_id == task.project_id)[0]['project_name']);
     console.log(this.currentDate);
     console.log(this.currentTasks);
     console.log(this.allTasks);
@@ -139,8 +142,8 @@ export class TimesheetComponent implements OnInit {
     // console.log(this.currentDateTasks);
   }
 
-  updateTask(task){
-    // console.log(task);
+  updateTask(task, e){
+    this.currentTasks.forEach(task => task.project_id = this.allProjects.map(project => project['project_name']).indexOf(task.project_name)+1);
   }
 
   onSave(){
@@ -196,7 +199,8 @@ export class TimesheetComponent implements OnInit {
     this.dateView = true;
     this.currentDate = date;
     this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate)
-
+    this.currentTasks.forEach(task => task.project_name = this.allProjects.filter(project => project.project_id == task.project_id)[0]['project_name']);
+    console.log(this.currentTasks);
   }
 
 }
