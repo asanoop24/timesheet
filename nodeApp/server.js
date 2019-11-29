@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 
 dotenv.config();
-console.log(`Your env is ${process.env.DEVELOPMENT}`);
+console.log(`Your env is ${process.env.NODE_ENV}`);
 
 // const env = process.env.NODE_ENV;
 // console.log(`Your port is ${env}`);
