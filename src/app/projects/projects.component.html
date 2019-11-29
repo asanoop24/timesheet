@@ -1,3 +1,11 @@
-<p>
-  projects works!
-</p>
+<div class='projects'>
+  <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
+  <div class='project newProject' *ngFor='let project of allProjects'>
+    <input type=text class='projectName' [(ngModel)]='project.project_name'/>
+  </div>
+  <span class='newProjectIcon' (click)='addNewProject()'></span>
+  <div class='buttons'>
+    <!-- <span class='button saveButton'>Save</span> -->
+    <span class='button submitButton' (click)='onSubmit()'>Submit</span>
+  </div>
+</div>

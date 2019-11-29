@@ -23,10 +23,11 @@
       <div class='taskDetails'>
         <div class='task' *ngFor='let task of currentTasks; let i=index'>
           <select class='taskDetail projectName' [(ngModel)]='task.project_name' (change)='updateTask(task)'>
-              <option value="UHC">UHC</option>
-              <option value="NPS">NPS</option>
-              <option value="Denials">Denials</option>
-              <option value="HC Collection">HC Collections</option>
+              <option *ngFor='let project of allProjects' value="{{ project.project_name }}">{{ project.project_name }}</option>
+              <!-- <option value="UHC">UHC</option> -->
+              <!-- <option value="NPS">NPS</option> -->
+              <!-- <option value="Denials">Denials</option> -->
+              <!-- <option value="HC Collection">HC Collections</option> -->
           </select>
           <input type=text class='taskDetail taskName' [(ngModel)]='task.task_name'/>
           <!-- <input type=number class='taskDetail timeSpent' [(ngModel)]='task.time_spent'/> -->

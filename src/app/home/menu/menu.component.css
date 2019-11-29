@@ -31,8 +31,12 @@ span.menuItemIcon.reportsIcon{
     background-image: url('./../../../assets/icons8-combo-chart-filled-100.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 30px;
 }
-span.menuItemIcon.editIcon{
+span.menuItemIcon.projectsIcon{
     background-image: url('./../../../assets/icons8-pencil-96.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+}
+span.menuItemIcon.usersIcon{
+    background-image: url('./../../../assets/users.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 30px;
 }
 span.menuItemIcon.logoutIcon{

@@ -12,7 +12,11 @@
     <!-- <span class='menuItemLabel'>Report</span> -->
   </div>
   <div class='menuItem' *ngIf='role=="admin"' routerLink='/home/projects' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
-    <span class='menuItemIcon editIcon'></span>
+    <span class='menuItemIcon projectsIcon'></span>
+    <!-- <span class='menuItemLabel'>Report</span> -->
+  </div>
+  <div class='menuItem' *ngIf='role=="admin"' routerLink='/home/users' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
+    <span class='menuItemIcon usersIcon'></span>
     <!-- <span class='menuItemLabel'>Report</span> -->
   </div>
   <div class='menuItem' (click)='onLogout()'>

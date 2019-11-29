@@ -13,8 +13,8 @@ export class DataService {
     //     2: ['2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16']
     // };
     allDatesString: string[] = ['2018-11-05', '2018-11-06', '2018-11-07', '2018-11-08', '2018-11-09', '2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16'];
-    // nodeApp = 'http://127.0.0.1:3000';
-    nodeApp = 'http://34.93.143.209:3000';
+    nodeApp = 'http://127.0.0.1:3000';
+    // nodeApp = 'http://34.93.143.209:3000';
 
     convertToDate(stringArray){
         let dateArray = [];
@@ -81,6 +81,66 @@ export class DataService {
             })
           };
         return this.http.get<any[]>(url, headers);
+    }
+
+    fetchProjects(){
+        const url     = `${this.nodeApp}/fetchProjects`;
+        const headers = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Accept': 'application/json'
+            })
+          };
+        return this.http.get<any[]>(url, headers);
+    }
+
+    fetchEmployees(){
+        const url     = `${this.nodeApp}/fetchEmployees`;
+        const headers = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Accept': 'application/json'
+            })
+          };
+        return this.http.get<any[]>(url, headers);
+    }
+
+    updateProjects(projects){
+        let url     = `${this.nodeApp}/updateProjects`;
+        console.log(projects);
+        let body    = {
+            projects: projects
+        };
+        let headers = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Accept': 'application/json'
+            })
+          };
+        return this.http.post(url, body, headers)
+        .subscribe(
+            data => console.log(data),
+            error => console.log(error)
+        );
+    }
+
+    updateEmployees(employees){
+        let url     = `${this.nodeApp}/updateEmployees`;
+        console.log(employees);
+        let body    = {
+            employees: employees
+        };
+        let headers = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Accept': 'application/json'
+            })
+          };
+        return this.http.post(url, body, headers)
+        .subscribe(
+            data => console.log(data),
+            error => console.log(error)
+        );
     }
 
     fetchReport(employeeId, startDate, endDate){

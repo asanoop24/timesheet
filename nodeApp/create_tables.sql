@@ -26,7 +26,7 @@ create table times
     date DATE,
     employee_id INT,
     project_id INT,
-    task_id INT,
+    task_id TEXT,
     time_spent FLOAT
 );
 
@@ -52,6 +52,6 @@ create table employees
     employee_email TEXT,
     employee_password TEXT,
     employee_role TEXT,
-    manager_id TEXT,
+    manager_id INT,
     manager_name TEXT
 );

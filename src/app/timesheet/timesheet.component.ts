@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from './../services/data.service';
 import { Task } from './../models/task.model';
+import { Project } from './../models/project.model';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -26,15 +27,22 @@ export class TimesheetComponent implements OnInit {
   taskSummary;
   dateView: boolean = false;
   currentMonth: number;
-  employeeId: string;
+  employeeId: number;
   employeeName: string;
   today: string;
+
+  allProjects: Project[] = [];
 
   allCalendarDates;
   currentCalendarDates;
   emptyCalendarDates: string[];
 
   ngOnInit() {
+    this.dataService.fetchProjects()
+    .subscribe(
+      data => {if(data['data']) this.allProjects = data['data']},
+      error => console.log(error)
+    );
     this.allDates = this.dataService.convertToDate(this.dataService.allDatesString);
     this.allMonths= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     this.currentDates = this.allDates[this.currentWeek.toString()];
@@ -112,7 +120,7 @@ export class TimesheetComponent implements OnInit {
       date: this.currentDate,
       employee_id: this.employeeId,
       employee_name: this.employeeName,
-      project_id: '1',
+      project_id: 1,
       project_name: '',
       task_id: this.currentTasks.length,
       task_name: '',
@@ -144,7 +152,7 @@ export class TimesheetComponent implements OnInit {
         // console.log(task.date);
       }
     });
-    // console.log(this.currentDateTasks);
+    console.log(this.currentTasks);
     // console.log(this.currentWeekTasks);
   }
 

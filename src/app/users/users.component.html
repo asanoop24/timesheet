@@ -1,0 +1,14 @@
+<div class='employees'>
+    <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
+    <div class='employee newEmployee' *ngFor='let employee of allEmployees'>
+      <input type=text class='employeeAttribute employeeName' [(ngModel)]='employee.employee_name'/>
+      <input type=text class='employeeAttribute employeeEmail' [(ngModel)]='employee.employee_email'/>
+      <input type=number min=0 class='employeeAttribute employeeId' [(ngModel)]='employee.employee_id' (change)='onChange(employee)'/>
+
+    </div>
+    <span class='newEmployeeIcon' (click)='addNewEmployee()'></span>
+    <div class='buttons'>
+      <!-- <span class='button saveButton'>Save</span> -->
+      <span class='button submitButton' (click)='onSubmit()'>Submit</span>
+    </div>
+  </div>

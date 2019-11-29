@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { UsersComponent } from './users/users.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
 // import { AuthService } from './services/auth.service';
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     { path: 'timesheet', component: TimesheetComponent },
     { path: 'reports', component: ReportsComponent },
     { path: 'projects', component: ProjectsComponent },
+    { path: 'users', component: UsersComponent }
   ] }
 //   { path: 'user-dashboard', component: UserDashboardComponent, children:[
 //     { path: '', redirectTo: 'user-dashboard', pathMatch: 'full' },

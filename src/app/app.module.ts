@@ -16,6 +16,7 @@ import { DataService } from './services/data.service';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ReportsComponent } from './reports/reports.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ReportsComponent } from './reports/reports.component';
     WorkspaceComponent,
     SignInComponent,
     ProjectsComponent,
-    ReportsComponent
+    ReportsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
