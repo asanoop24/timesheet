@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
-// import { environment } from './../../environments/environment';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class DataService {
@@ -13,7 +13,7 @@ export class DataService {
     //     2: ['2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16']
     // };
     allDatesString: string[] = ['2018-11-05', '2018-11-06', '2018-11-07', '2018-11-08', '2018-11-09', '2018-11-12', '2018-11-13', '2018-11-14', '2018-11-15', '2018-11-16'];
-    nodeApp = 'http://127.0.0.1:3000';
+    nodeApp = environment.nodeApp;
     // nodeApp = 'http://34.93.143.209:3000';
 
     convertToDate(stringArray){
