@@ -28,6 +28,7 @@ export class TimesheetComponent implements OnInit {
   taskSummary;
   dateView: boolean = false;
   currentMonth: number;
+  currentYear: number;
   employeeId: number;
   employeeName: string;
   today: string;
@@ -49,15 +50,15 @@ export class TimesheetComponent implements OnInit {
     this.currentDates = this.allDates[this.currentWeek.toString()];
     this.currentDate = moment(new Date()).format('MMMM DD, YYYY');
     this.currentMonth = new Date(moment(this.currentDate).format('YYYY-MM-DD')).getMonth() + 1;
+    this.currentYear = moment(this.currentDate).year();
+
     this.today = moment(new Date()).format('YYYY-MM-DD');
-    console.log(this.today);
     this.employeeId = JSON.parse(localStorage.getItem('employee'))['employee_id'];
     this.employeeName = JSON.parse(localStorage.getItem('employee'))['employee_name'];
     this.dataService.fetchTimesheet(this.employeeId)
     .subscribe(
       data => {
         this.allTasks = data['data'];
-        console.log(this.allTasks);
         this.allTasks.forEach((task) => {
           task.date = moment(task.date).format('YYYY-MM-DD');
         });
@@ -69,7 +70,7 @@ export class TimesheetComponent implements OnInit {
     .subscribe(
       data => {
         this.allCalendarDates = data['data'].map((date) => moment(date.date).format('YYYY-MM-DD'));
-        this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth() + 1 == this.currentMonth);
+        this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth() + 1 == this.currentMonth && new Date(date).getFullYear() == this.currentYear);
         let emptyDates = moment(this.currentCalendarDates[0]).weekday() - 2;
         this.emptyCalendarDates = [];
         for(let i=0;i<=emptyDates;i++){
@@ -92,17 +93,12 @@ export class TimesheetComponent implements OnInit {
     let dates = tasks.map((task) => task.date);
     dates = dates.filter((v, i, a) => a.indexOf(v) === i);
     tasks = _.pick(tasks, ['date', 'time_spent']);
-    console.log(tasks);
-    console.log(dates);
   }
 
   goToPreviousDate(){
     this.currentDate  = <string>moment(this.currentDate).subtract(1, 'days').format('YYYY-MM-DD');
     this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate);
     this.currentTasks.forEach(task => task.project_name = this.allProjects.filter(project => project.project_id == task.project_id)[0]['project_name']);
-    console.log(this.currentDate);
-    console.log('current tasks', this.currentTasks);
-    console.log(this.allTasks);
     // this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate)
     // this.allTasks = this.allTasks.filter((task) => task.date != this.currentDate)
     // console.log(this.allTasks);
@@ -111,9 +107,6 @@ export class TimesheetComponent implements OnInit {
     this.currentDate = <string>moment(this.currentDate).add(1, 'days').format('YYYY-MM-DD');
     this.currentTasks = this.allTasks.filter((task) => task.date == this.currentDate);
     this.currentTasks.forEach(task => task.project_name = this.allProjects.filter(project => project.project_id == task.project_id)[0]['project_name']);
-    console.log(this.currentDate);
-    console.log(this.currentTasks);
-    console.log(this.allTasks);
     // this.allTasks = this.allTasks.filter((task) => task.date != this.currentDate)
     // console.log(this.allTasks);
   }
@@ -155,14 +148,11 @@ export class TimesheetComponent implements OnInit {
         // console.log(task.date);
       }
     });
-    console.log(this.currentTasks);
     // console.log(this.currentWeekTasks);
   }
 
   onSubmit(){
-    console.log(this.allTasks);
     this.allTasks = this.allTasks.filter((task) => task.project_name != '' && task.task_name != '');
-    console.log(this.allTasks);
     this.dataService.submitTimesheet(this.allTasks);
   }
 
