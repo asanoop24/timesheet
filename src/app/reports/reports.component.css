@@ -6,17 +6,34 @@ div.reportView{
 }
 
 div.employeeView{
-    width: 80%;   height: 400px;
+    width: 75%;   height: 400px;
     display: flex;  flex-direction: column; justify-content: flex-start;
-    margin-top: 50px;    margin-bottom: 20px;
+    margin-top: 0px;    margin-bottom: 20px;
     position: relative;
 }
 
 div.dateSelection{
-    width: 50%;   height: 100px;
+    width: 100%;   height: 100px;
     display: flex;  flex-direction: row;    justify-content: space-between;
     margin-bottom: 20px;
     position: relative;
+    background-color: rgba(6, 50, 116,1);
+    color: honeydew;
+}
+div.dateSelection span{
+    padding: 10px;
+}
+div.dateSelection button{
+    width: 100px;
+    background-color: rgba(6, 50, 116,1);
+    outline: none;  border: none;
+    color: honeydew;
+    cursor: pointer;
+    font-size: 15px;
+    /* padding: 10px; */
+}
+div.dateSelection button:hover{
+    background-color: rgba(7,71,166,1);
 }
 input.date{
     height:25px;
@@ -37,9 +54,19 @@ div.nameCard, div.timeCard{
 }
 div.nameCard{
     background-color: #f7eb47;
+    background-color: rgba(6, 50, 116,1);
+    background-color: rgba(7,71,166,1);
+    color: honeydew;
+    /* background-color: rgba(150,150,150,1); */
+    /* background-color: rgb(38, 132, 255); */
+    /* border: 1px solid rgba(38, 132, 255,1); */
+    /* border-top-left-radius: 5px; */
+    /* border-top-right-radius: 5px; */
 }
 div.timeCard{
-    background-color: rgba(230, 230, 230, 0.8);
+    /* background-color: rgba(230, 230, 230, 0.8); */
+    border-right: 1px solid rgba(200,200,200,1);
+    border-bottom: 1px solid rgba(200,200,200,1);
 }
 
 
@@ -50,4 +77,13 @@ div.projects{
 }
 div.project{
     width: 150px;   height: 50px;  align-content: center;  text-align: center; line-height: 50px;
+    background-color: rgba(7,71,166,1);
+    /* background-color: rgba(200,200,200,1); */
+    /* background-color: rgba(150,150,150,1); */
+    /* background-color: rgba(38, 132, 255,1); */
+    color: honeydew;
+    border-right: 1px solid rgba(7,71,166,1);
+    /* border-right: 1px solid rgba(38, 132, 255,1); */
+    /* border-top-left-radius: 5px; */
+    /* border-left: 1px solid rgba(7,71,166,1); */
 }

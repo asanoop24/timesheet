@@ -4,42 +4,47 @@ div.menu{
     display: flex;  flex-direction: column;
     background-color: #455672;
     background-color: rgba(50,50,50,1);
+    background-color: #0052CC;
+    background-color: rgba(7,71,166,1);
+    background-color: rgba(6, 50, 116,1);
 }
 
 div.menuItem{
-    width: 100%;    height: 30px;
+    width: 100%;    height: 75px;
     display: flex;  flex-direction: row;    justify-content: center;
-    margin-top: 20px;   margin-bottom: 10px;
+    /* margin-top: 20px;   margin-bottom: 10px; */
     cursor: pointer;    outline: none;
 }
 span.menuItemIcon{
-    width: 30px;
-    opacity: 0.5;
+    width: 100%;
+    opacity: 1;
 }
 div.menuItem:hover span.menuItemIcon, div.menuItem.active span.menuItemIcon{
+    background-color: #0052CC;
+    background-color: rgba(7,71,166,1);
     opacity: 1;
 }
 span.menuItemIcon.homeIcon{
     background-image: url('./../../../assets/icons8-home-page-100.png');
-    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+    background-position: center;    background-repeat: no-repeat;   background-size: 25px;
 }
 span.menuItemIcon.timesheetIcon{
-    background-image: url('./../../../assets/icons8-schedule-100.png');
-    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+    background-image: url('./../../../assets/calendar.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 25px;
 }
 span.menuItemIcon.reportsIcon{
     background-image: url('./../../../assets/icons8-combo-chart-filled-100.png');
-    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+    background-position: center;    background-repeat: no-repeat;   background-size: 25px;
 }
 span.menuItemIcon.projectsIcon{
-    background-image: url('./../../../assets/icons8-pencil-96.png');
-    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+    background-image: url('./../../../assets/list.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 25px;
 }
 span.menuItemIcon.usersIcon{
     background-image: url('./../../../assets/users.png');
-    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+    background-position: center;    background-repeat: no-repeat;   background-size: 25px;
 }
 span.menuItemIcon.logoutIcon{
-background-image: url('./../../../assets/close-white.png');
-    background-position: center;    background-repeat: no-repeat;   background-size: 30px;
+background-image: url('./../../../assets/logout.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 25px;
 }

@@ -32,7 +32,7 @@ export class TimesheetComponent implements OnInit {
   employeeId: number;
   employeeName: string;
   today: string;
-
+  weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   allProjects: Project[] = [];
 
   allCalendarDates;
@@ -165,23 +165,33 @@ export class TimesheetComponent implements OnInit {
   goToPreviousMonth(){
     this.currentDate  = moment(this.currentDate).subtract(1, 'months').format('YYYY-MM-DD');
     this.currentMonth = parseInt(moment(this.currentDate).format('MM'));
-    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth()+1 == this.currentMonth);
-    let emptyDates = moment(this.currentCalendarDates[0]).weekday() - 2;
+    this.currentYear = new Date(this.currentDate).getFullYear();
+    console.log(this.currentMonth, this.currentYear);
+    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth()+1 == this.currentMonth && new Date(date).getFullYear() == this.currentYear);
+    let emptyDates = moment(this.currentCalendarDates[0]).weekday();
+    console.log(moment(this.currentCalendarDates[0]), moment(this.currentCalendarDates[0]).weekday())
     this.emptyCalendarDates = [];
-    for(let i=0;i<=emptyDates;i++){
+    for(let i=0;i<emptyDates;i++){
       this.emptyCalendarDates.push('NA');
     }
+    console.log(this.currentCalendarDates);
+    console.log('weekday', moment(this.currentCalendarDates[0]).weekday());
+    console.log(this.emptyCalendarDates);
   }
   goToNextMonth(){
     this.currentDate  = moment(this.currentDate).add(1, 'months').format('YYYY-MM-DD');
     this.currentMonth = parseInt(moment(this.currentDate).format('MM'));
-    console.log(this.currentMonth);
-    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth()+1 == this.currentMonth);
-    let emptyDates = moment(this.currentCalendarDates[0]).weekday() - 2;
+    this.currentYear = new Date(this.currentDate).getFullYear();
+    console.log(this.currentMonth, this.currentYear);
+    this.currentCalendarDates = this.allCalendarDates.filter((date) => new Date(date).getMonth()+1 == this.currentMonth  && new Date(date).getFullYear() == this.currentYear);
+    let emptyDates = moment(this.currentCalendarDates[0]).weekday();
     this.emptyCalendarDates = [];
-    for(let i=0;i<=emptyDates;i++){
+    for(let i=0;i<emptyDates;i++){
       this.emptyCalendarDates.push('NA');
     }
+    console.log(this.currentCalendarDates);
+    console.log('weekday', moment(this.currentCalendarDates[0]).weekday());
+    console.log(this.emptyCalendarDates);
   }
   
   

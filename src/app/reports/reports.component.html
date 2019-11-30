@@ -2,10 +2,12 @@
   <div class='employeeView'>
 
     <div class='dateSelection'>
-      <span>From <input class='date startDate' type="date" [(ngModel)]='startDate' (change)='onChange()'></span>
-      <span>To <input class='date endDate' type="date" [(ngModel)]='endDate' (change)='onChange()'></span>
+      <span>From <br/><input class='date startDate' type="date" [(ngModel)]='startDate' (change)='onChange()'></span>
+      <span>To  <br/><input class='date endDate' type="date" [(ngModel)]='endDate' (change)='onChange()'></span>
       <!-- <a [href]='safeDownloadURL' download='data.json' (click)='downloadReport()'>download JSON</a> -->
-      <a [href]='safeDownloadURL' download='Timesheet.csv' (click)='downloadReport()'>Download</a>
+      <button (click)='downloadReport()'>Download</button>
+        <!-- <a [href]='safeDownloadURL' download='Timesheet.csv' (click)='downloadReport()'>Download</a> -->
+      
     </div>
 
     <div class='employees'>

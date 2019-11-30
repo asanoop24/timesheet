@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
-// import {CsvService} from 'angular2-json2csv'
+import {ExportToCsv} from 'export-to-csv';
 
 @Component({
   selector: 'app-reports',
@@ -71,7 +71,22 @@ export class ReportsComponent implements OnInit {
   }
 
   downloadReport(){
-    this.JSONToCSVConvertor(this.report, 'report', 0);
+    // this.JSONToCSVConvertor(this.report, 'report', 0);
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      filename: 'Timesheet',
+      decimalSeparator: '.',
+      showLabels: true,
+      showTitle: false,
+      // title: 'Timesheet',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+    const csvExporter = new ExportToCsv(options);
+    csvExporter.generateCsv(this.report);
   }
 
   JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel){

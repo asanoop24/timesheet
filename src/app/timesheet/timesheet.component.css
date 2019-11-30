@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 div.timesheet, div.dateView{
     width: 100%;   height: 100%;
     position: relative;
@@ -8,7 +11,7 @@ div.timesheet, div.dateView{
 }
 
 div.dateNavigation{
-    width: 80%;   height: 100px;    
+    width: calc(80% - 100px);   height: 100px;    
     display: flex;  flex-direction: row;
     /* margin-bottom: 20px; */
     position: relative;
@@ -18,14 +21,17 @@ div.dateSlider{
     width: 100%;   height: 100px;    
     display: flex;  flex-direction: row;
     margin-bottom: 20px;    overflow-x: hidden;
-    border-radius: 10px;
+    border-radius: 0px;
+    border-right: 5px solid rgba(6, 50, 116,1);
 }
 span.date{
     min-width: 100%;
     line-height: 50px;  text-align: center;
     background-color: #455672;
-    background-color: rgba(50,50,50,1); opacity: 0.9;
-    border: 1px solid rgba(150,150,150,0.8);
+    background-color: rgba(50,50,50,1); opacity: 1;
+    background-color: rgba(6, 50, 116,1);
+    border-right: 10px solid rgba(6, 50, 116,1);
+    border: none;
     color: whitesmoke;  font-size: 20px;
     font-weight: 300;
     /* cursor: pointer; */
@@ -49,26 +55,37 @@ span.totalHoursLabel{
     width: 100px;    height: 20px;   vertical-align: middle;     text-align: center;
 }
 span.navigateDate{
-    width: 25px;
-    background-image: url('./../../assets/icons8-chevron-right-48.png');
+    width: 50px;
+    background-image: url('./../../assets/double-left.png');
+    background-color: rgba(6, 50, 116,1);
     background-position: center;    background-repeat: no-repeat;   background-size: 35px;
-    cursor: pointer;    opacity: 0.7;
+    cursor: pointer;    opacity: 1;
+    border: none;
 }
 span.navigateDate:hover{
+    background-color: rgba(7,71,166,1);
     opacity: 1;
 }
-span.navigateDate.previousDate{
+span.navigateDate.nextDate{
     transform: rotateZ(180deg);
 }
 div.tasks{
-    width: 80%;
+    width: calc(80% - 100px);
     display: flex;  flex-direction: column;    justify-content: space-evenly;
 }
 div.taskLabels{
-    width: calc(100% - 50px);    background-color: #f7eb47;  margin-left: 25px;
+    width: 100%;    background-color: #f7eb47;  margin-left: 0px;
+    background-color: rgba(7,71,166,0);
     display: flex;  flex-direction: row;    justify-content: space-between;
     vertical-align: middle; line-height: 30px;
     margin-bottom: 20px;
+    font-size: 18px;    margin-top: 10px;
+}
+span.taskLabel.projectName, span.taskLabel.timeSpent{
+    min-width: 25%;
+}
+span.taskLabel.taskName{
+    min-width: 50%;
 }
 div.taskDetails{
     width: 100%;
@@ -81,48 +98,58 @@ div.task{
     margin-bottom: 5px;    margin-top: 5px;
 }
 span.taskLabel, input.taskDetail, select.taskDetail, div.taskDetail{
-    width: 30%; height: 30px;   color: black;  opacity: 0.6;
-    outline: none;  font-weight: 400;   font-size: 15px;
+    height: 30px;   color: black;  opacity: 0.8;
+    outline: none;  font-weight: 300;
 }
-div.taskDetail{
-    width: 100px;   padding: 0px !important;    border: none;
+select.taskDetail.projectName, div.taskDetail.timeSpent{
+    min-width: calc(25% - 20px);
+    /* padding-left: 10px; padding-right: 10px; */
+}
+input.taskDetail.taskName{
+    min-width: 50%;
+    margin-left: 10px; margin-right: 10px;
+    padding-left: 10px; padding-right: 10px;
+}
+div.taskDetail.timeSpent{
+    padding-left: 50px; padding-right: 50px;    border: none;
 }
 span.taskLabel{
     text-align: center;
 }
-input.taskDetail.taskName, select.taskDetail.projectName, input.taskDetail.timeSpentVal, div.taskDetail.timeSpent {
-    background: transparent;    box-shadow: none;    border: none;   border: 1px solid rgb(148, 134, 134); 
+input.taskDetail.taskName, select.taskDetail.projectName, input.taskDetail.timeSpentVal{
+    background: transparent;    box-shadow: none;    border: none;
+    border-bottom: 1px solid rgb(148, 134, 134); 
     /* border-radius: 5px; */
-    padding-left: 10px;
+    /* padding-left: 10px; */
 }
 span.taskLabel.projectName, select.taskDetail.projectName{
-    width: 20%; cursor: pointer;
+    width: 25%; cursor: pointer;
 }
 span.taskLabel.taskName, input.taskDetail.taskName{
-    width: 60%;
+    width: 50%;
 }
 span.taskLabel.timeSpent, input.taskDetail.timeSpent{
-    width: 10%;
+    width: 25%;
 }
 div.taskDetail.timeSpent{
     display: flex;  flex-direction: row;    justify-content: center;
-    padding-left: 5px;  padding-right: 5px;
+    /* padding-left: 5px;  padding-right: 5px; */
 }
 span.minus{
     width: 30px;    height: 30px;
-    padding-left: 10px;  padding-right: 10px;
-    border-right: 2px solid rgb(148, 134, 134); 
+    /* padding-left: 10px;  padding-right: 10px; */
+    border: 1px solid rgb(148, 134, 134); 
     background-image: url('./../../assets/icons8-minus-24.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 15px;
     cursor: pointer;    margin: auto;  opacity: 0.4;    margin-bottom: 50px;
 }
 input.timeSpentValue{
-    width: 100%;    border: none;   outline: none;  text-align: center; font-size: 20px;
+    width: 50px;    border: none;   outline: none;  text-align: center; font-size: 20px;
 }
 span.plus{
     width: 30px;    height: 30px;
     padding-left: 10px;  padding-right: 10px;
-    border-left: 2px solid rgb(148, 134, 134);
+    border: 1px solid rgb(148, 134, 134);
     background-image: url('./../../assets/icons8-plus-24.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 15px;
     cursor: pointer;    margin: auto;  opacity: 0.4;    margin-bottom: 50px;
@@ -154,8 +181,8 @@ span.button{
     border-radius: 5px;
 }
 span.button:hover{
-    background-color: rgba(236, 184, 13, 1);  background-color: #f7eb47;
-    color: rgba(32,32,32,1);
+    background-color: rgba(236, 184, 13, 1);  background-color: #f7eb47;    color: rgba(32,32,32,1);
+    background-color: rgba(6, 50, 116,1); border: rgba(6, 50, 116,1);   color: honeydew;
 }
 /*--------------------------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------*/
@@ -175,7 +202,7 @@ div.timesheet, div.calendarView{
 }
 
 div.monthNavigation{
-    width: 80%;   height: 100px;    
+    width: calc(80% - 100px);   height: 100px;    
     display: flex;  flex-direction: row;
     margin-bottom: 20px;
     position: relative;
@@ -185,13 +212,16 @@ div.monthSlider{
     width: 100%;   height: 100px;    
     display: flex;  flex-direction: row;
     margin-bottom: 20px;    overflow-x: hidden;
-    border-radius: 10px;    line-height: 100px;
+    border-radius: 0px;    line-height: 100px;
+    border-right: 5px solid rgba(6, 50, 116,1);
 }
 span.month{
     min-width: 100%;
     line-height: 50px;  text-align: center;
-    background-color: rgba(50,50,50,1); opacity: 0.9;
-    border: 1px solid rgba(150,150,150,0.8);
+    background-color: rgba(50,50,50,1); opacity: 1;
+    background-color: rgba(7,71,166,1);
+    background-color: rgba(6, 50, 116,1);
+    /* border: 1px solid rgba(150,150,150,0.8); */
     color: whitesmoke;  font-size: 20px;
     font-weight: 300;    line-height: 100px;
     /* cursor: pointer; */
@@ -204,23 +234,29 @@ span.month.selected{
     opacity: 1;
 }
 span.navigateMonth{
-    width: 25px;
-    background-image: url('./../../assets/icons8-chevron-right-48.png');
+    width: 50px;
+    background-image: url('./../../assets/double-left.png');
+    background-color: rgba(6, 50, 116,1);
     background-position: center;    background-repeat: no-repeat;   background-size: 35px;
-    cursor: pointer;    opacity: 0.7;
+    cursor: pointer;    opacity: 1;
 }
 span.navigateMonth:hover{
+    background-color: rgba(7,71,166,1);
     opacity: 1;
 }
-span.navigateMonth.previousMonth{
+span.navigateMonth.nextMonth{
     transform: rotateZ(180deg);
 }
 div.calendarDates{
     display: flex;  flex-direction: row;    flex-wrap: wrap;
-    width: calc(80% - 50px); height: 500px;
+    width: calc(80% - 100px); height: 500px;
+    border-left: 1px solid rgba(200, 200, 200, 0.5);
+    border-top: 1px solid rgba(200, 200, 200, 0.5)
 }
 div.calendarDateCard{
-    width: 13%;   height: 90px;  border: 0.1px solid rgba(200, 200, 200, 0.5);
+    width: 14.28%;   height: 90px;
+    border-right: 1px solid rgba(200, 200, 200, 0.5);
+    border-bottom: 1px solid rgba(200, 200, 200, 0.5);
     /* background-color: rgba(245,245,245,1);    */
     /* border-radius: 5px; */
     display: flex;  flex-direction: column; justify-content: space-between;
@@ -229,23 +265,30 @@ div.calendarDateCard{
 div.calendarDateCard:hover, div.calendarDateCard.today{
     background-color: #455672;
     background-color: rgba(200,200,200,1);
-    color: rgba(0,0,0,0.8);   background-color: #f7eb47
+    color: rgba(0,0,0,0.8);   background-color: #f7eb47;
+    background-color: rgba(6, 50, 116,1);
+    background-color: rgba(7,71,166,1);
+    background-color: rgba(38, 132, 255,1);
+    color: honeydew;
 }
 span.calendarHoursLabel{
     display: flex;  flex-direction: row;    justify-content: flex-end; align-items: baseline;
     font-size: 35px;    font-weight: 300;
-    right: 0px;
+    right: 0px;    color: honeydew;
+
 }
 span.calendarHoursLabel span{
-    font-size: 12px;
+    font-size: 12px;    color: honeydew;
+
 }
 div.calendarDateCard span{
-    color: rgba(150,150,150,1);
-    font-weight: 200;
+    color: rgba(200,200,200,1);
+    font-weight: 300;
 }
 div.calendarDateCard:hover span, div.calendarDateCard.today span{
     color: rgba(200,200,200,0.8);
     color: rgba(10,10,10,1);
+    color: honeydew;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

@@ -1,5 +1,8 @@
 <div class='employees'>
     <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
+    <div class='employeesLabel'>
+      <span class='employeesLabel'>EMPLOYEES</span>
+    </div>
     <div class='employee newEmployee' *ngFor='let employee of allEmployees'>
       <input type=text class='employeeAttribute employeeName' [(ngModel)]='employee.employee_name'/>
       <input type=text class='employeeAttribute employeeEmail' [(ngModel)]='employee.employee_email'/>

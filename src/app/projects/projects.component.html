@@ -1,5 +1,8 @@
 <div class='projects'>
   <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
+  <div class='projectsLabel'>
+    <span class='projectsLabel'>PROJECTS</span>
+  </div>
   <div class='project newProject' *ngFor='let project of allProjects'>
     <input type=text class='projectName' [(ngModel)]='project.project_name'/>
   </div>
