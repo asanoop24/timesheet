@@ -99,7 +99,7 @@ div.task{
 }
 span.taskLabel, input.taskDetail, select.taskDetail, div.taskDetail{
     height: 30px;   color: black;  opacity: 0.8;
-    outline: none;  font-weight: 300;
+    outline: none;  font-weight: 300;   font-size: 15px;
 }
 select.taskDetail.projectName, div.taskDetail.timeSpent{
     min-width: calc(25% - 20px);
