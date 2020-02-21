@@ -1,14 +1,49 @@
-<div class='projects'>
+<div class='projectsWorkspace'>
   <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
-  <div class='projectsLabel'>
+  <div class='projectsHeader'>
     <span class='projectsLabel'>PROJECTS</span>
+    <span class='newProjectIcon' (click)='addNewProject()'></span>
   </div>
-  <div class='project newProject' *ngFor='let project of allProjects'>
-    <input type=text class='projectName' [(ngModel)]='project.project_name'/>
-  </div>
-  <span class='newProjectIcon' (click)='addNewProject()'></span>
-  <div class='buttons'>
-    <!-- <span class='button saveButton'>Save</span> -->
-    <span class='button submitButton' (click)='onSubmit()'>Submit</span>
+  <div class='projectsBody'>
+
+    <div class='projectsList' [class.active]='activeProjectFlag'>
+      <div class='project' [ngClass]="activeProject==project ? 'active' : 'inactive'" *ngFor='let project of allProjects' (click)='selectProject(project)'>
+        <div class='projectCard'>
+          <span class='projectName'>{{ project.project_name }}</span>
+          <div class="projectOptions">
+            <span class='projectOption delete'></span>
+            <span class='projectOption configure'></span>
+            <span class='projectOption time'></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='newProjectPanel' [ngClass]="{'active': newProjectFlag}">
+      <form id='newProjectForm' [formGroup]='newProjectForm' (ngSubmit)='onSubmit()'>
+        <div class='cancel' (click)='cancelNewProject()'><img src='./../../assets/close-black.png'/></div>
+        <span class='projectDetailsLabel'>Enter Project Details</span>
+        <div class='projectField'>
+          <input type='text' class='fieldValue projectName' id='projectName' required  formControlName='name' />
+          <label for='projectName'>NAME</label>
+        </div>
+        <div class='projectField'>
+          <input type='text' class='fieldValue projectCode' id='projectCode' required  formControlName='code' />
+          <label for='projectCode'>CODE</label>
+        </div>
+        <div class='projectField'>
+          <input type='text' class='fieldValue projectType' id='projectType' required  formControlName='type' />
+          <label for='projectType'>TYPE</label>
+        </div>
+        <div class='projectField'>
+          <input type='text' class='fieldValue projectOwner' id='projectOwner' required  formControlName='owner' />
+          <label for='projectOwner'>OWNER</label>
+        </div>
+        <!-- <span class='button submitButton' (click)='onSubmit()'>Submit</span> -->
+        <button type='submit'>Done</button>
+        <button type='button' (click)='cancelNewProject()'>Cancel</button>
+      </form>
+    </div>
+
   </div>
 </div>
