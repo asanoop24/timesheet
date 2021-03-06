@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   role: string = '';
-
+  defaultUserId: number = 1062136;
+  
   constructor(private router: Router) { }
 
   ngOnInit() {

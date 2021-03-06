@@ -38,6 +38,7 @@ var app = express();
 // .catch(e => console.log(e));
 
 
+// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Summer24';
 var connection = mysql.createConnection({
   host     : process.env.MYSQL_HOST,
   user     : process.env.MYSQL_USERNAME,
@@ -51,7 +52,6 @@ var connection = mysql.createConnection({
 //   password : 'password',
 //   port     : 3306
 // });
-
 
 connection.connect(function(err) {
   if (err) {

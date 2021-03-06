@@ -1,26 +1,30 @@
 <div class='menu'>
   <div class='menuItem' routerLink='/home' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
     <span class='menuItemIcon homeIcon'></span>
-    <!-- <span class='menuItemLabel'>Add</span> -->
+    <span class='menuItemLabel'>Home</span>
   </div>
   <div class='menuItem' routerLink='/home/timesheet' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
     <span class='menuItemIcon timesheetIcon'></span>
-    <!-- <span class='menuItemLabel'>Edit</span> -->
+    <span class='menuItemLabel'>Timesheet</span>
   </div>
   <div class='menuItem' routerLink='/home/reports' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
     <span class='menuItemIcon reportsIcon'></span>
-    <!-- <span class='menuItemLabel'>Report</span> -->
+    <span class='menuItemLabel'>Summary</span>
   </div>
   <div class='menuItem' *ngIf='role=="admin"' routerLink='/home/projects' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
     <span class='menuItemIcon projectsIcon'></span>
-    <!-- <span class='menuItemLabel'>Report</span> -->
+    <span class='menuItemLabel'>Projects</span>
   </div>
-  <div class='menuItem' *ngIf='role=="admin"' routerLink='/home/users' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
+  <div class='menuItem' *ngIf='role=="admin"' [routerLink]="['/home/users', defaultUserId]" routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }">
     <span class='menuItemIcon usersIcon'></span>
-    <!-- <span class='menuItemLabel'>Report</span> -->
+    <span class='menuItemLabel'>Team</span>
   </div>
   <div class='menuItem' (click)='onLogout()'>
     <span class='menuItemIcon logoutIcon'></span>
-    <!-- <span class='menuItemLabel'>Report</span> -->
+    <span class='menuItemLabel'>Logout</span>
   </div>
+  <!-- <div class='menuItem'>
+    <span class='menuItemIcon testIcon'></span>
+    <span class='menuItemLabel testLabel'>Test</span>
+  </div> -->
 </div>

@@ -1,0 +1,38 @@
+<div class="profile">
+  <div class="basicProfile">
+    <span class='employeePhoto'></span>
+    <div class='kpiProfile'>
+      <div class='kpi kpi1'>
+        <span class='kpiValue'>{{ numProjects }}</span><br>
+        <span class='kpiLabel'>Projects</span>
+      </div>
+      <div class='kpi kpi2'>
+        <span class='kpiValue'>{{ totalHours }}</span><br>
+        <span class='kpiLabel'>Hours</span>
+      </div>
+      <div class='kpi kpi3'>
+        <span class='kpiValue'>{{ hoursPerWeek | number:'1.0-2' }}</span><br>
+        <span class='kpiLabel'>Hours/Week</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="projectProfile">
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="single"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [barPadding]="barPadding"
+      [showGridLines]="showGridLines"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>

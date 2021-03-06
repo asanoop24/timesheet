@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
@@ -13,6 +13,7 @@
     background: #888;
     /* background: #ff2300; */
     background: #e04811;
+    background: #555;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -43,7 +44,7 @@ span.projectsLabel{
     font-size: x-large;
 }
 div.projectsBody{
-    width: 100%;    height: calc(100% - 50px);
+    width: 100%;    height: calc(100% - 40px);
     background-color: rgb(245, 245, 245);
     background-color: #2c2f2e;
     display: flex;  flex-direction: row;
@@ -69,11 +70,12 @@ div.newProjectPanel.active{
 
 
 span.newProjectIcon{
-    width: 30px;    height: 30px;
+    width: 25px;    height: 25px;
     /* background-image: url('./../../assets/icons8-plus-100-1.png'); */
     /* background-image: url('./../../assets/add.svg'); */
     mask: url('./../../assets/add.svg');    background: honeydew;
     background-position: center;    background-repeat: no-repeat;   background-size: 25px;
+    mask-size: 25px;    mask-repeat: no-repeat;
     cursor: pointer;    margin-top: 10px;
     /* margin-top: 25px; margin-bottom: 25px;  opacity: 0.7;   */
       /* margin-bottom: 50px; */
@@ -218,7 +220,7 @@ div.project{
     /* background-color: RGBA(200,200,200,1); */
     /* background-color: #f7eb47; */
     width: calc(25% - 1px); height: calc(25% - 1px);
-    margin-top: 5px;
+    margin-top: 25px;
     min-height: 0px;
     transition: all 1s ease;
     overflow: hidden;

@@ -19,7 +19,7 @@ const appRoutes: Routes = [
     { path: 'timesheet', component: TimesheetComponent },
     { path: 'reports', component: ReportsComponent },
     { path: 'projects', component: ProjectsComponent },
-    { path: 'users', component: UsersComponent }
+    { path: 'users/:id', component: UsersComponent }
   ] }
 //   { path: 'user-dashboard', component: UserDashboardComponent, children:[
 //     { path: '', redirectTo: 'user-dashboard', pathMatch: 'full' },

@@ -8,23 +8,46 @@ div.menu{
     background-color: rgba(7,71,166,1);
     background-color: rgba(6, 50, 116,1);
     background-color: #e04811;
+    z-index: 1;
 }
 
 div.menuItem{
-    width: 100%;    height: 75px;
+    width: 100%;    height: 50px;
     display: flex;  flex-direction: row;    justify-content: center;
     /* margin-top: 20px;   margin-bottom: 10px; */
     cursor: pointer;    outline: none;
+    overflow-x: hidden;
+    position: relative;
 }
 span.menuItemIcon{
     width: 100%;
     opacity: 1;
 }
-div.menuItem:hover span.menuItemIcon, div.menuItem.active span.menuItemIcon{
+span.menuItemLabel{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0px;
+    align-self: center; text-align: center; vertical-align: middle;
+    line-height: 50px;
+    color: honeydew;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+div.menuItem:hover span.menuItemIcon, div.menuItem.active span.menuItemIcon,
+div.menuItem:hover span.menuItemLabel{
     background-color: #0052CC;
     background-color: rgba(7,71,166,1);
     background-color: #b43e17;
     opacity: 1;
+}
+div.menuItem:hover{
+    overflow-x: visible;
+    /* overflow-y: hidden; */
+}
+div.menuItem:hover span.menuItemLabel{
+    width: 150px;
+    height: 100%;
 }
 span.menuItemIcon.homeIcon{
     background-image: url('./../../../assets/icons8-home-page-100.png');
@@ -48,5 +71,10 @@ span.menuItemIcon.usersIcon{
 }
 span.menuItemIcon.logoutIcon{
 background-image: url('./../../../assets/logout.png');
+    background-position: center;    background-repeat: no-repeat;   background-size: 20px;
+}
+
+span.menuItemIcon.testIcon{
+    background-image: url('./../../../assets/logout.png');
     background-position: center;    background-repeat: no-repeat;   background-size: 20px;
 }

@@ -1,5 +1,4 @@
-<div class='employees'>
-    <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
+<!-- <div class='employees'>
     <div class='employeesLabel'>
       <span class='employeesLabel'>EMPLOYEES</span>
     </div>
@@ -11,7 +10,32 @@
     </div>
     <span class='newEmployeeIcon' (click)='addNewEmployee()'></span>
     <div class='buttons'>
-      <!-- <span class='button saveButton'>Save</span> -->
       <span class='button submitButton' (click)='onSubmit()'>Submit</span>
     </div>
+  </div> -->
+
+<div class='employeesWorkspace'>
+    <!-- <div class='employee' *ngFor='let employee of allemployees'>{{ employee.employee_name }}</div> -->
+  <div class='employeesHeader'>
+    <span class='employeesLabel'>TEAM</span>
+    <span class='newEmployeeIcon' (click)='addNewemployee()'></span>
   </div>
+  <div class='employeesBody'>
+
+    <div class='employeesList' [class.active]='activeEmployeeFlag'>
+      <div class='employee' [ngClass]="activeEmployee==employee ? 'active' : 'inactive'" *ngFor='let employee of allEmployees' (click)='selectEmployee(employee)'>
+        <span class='employeePhoto'></span>
+        <div class="employeeDetails">
+          <span class='employeeName'>{{ employee.employee_name }}</span>
+          <!-- <span class='employeeEmail'>{{ employee.employee_email }}</span> -->
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    <div class='employeeProfile'>
+      <app-employee-profile></app-employee-profile>
+    </div>
+
+  </div>
+</div>

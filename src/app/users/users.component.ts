@@ -5,6 +5,8 @@ import { Employee } from './../models/employee.model';
 import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+// import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -19,7 +21,10 @@ export class UsersComponent implements OnInit {
   employeePassword: string = '';
   allEmployees: Employee[] = [];
   newEmployees: Employee[] = [];
-  constructor(private dataService: DataService) { }
+  activeEmployeeFlag: boolean = false;
+  activeEmployee: Employee;
+
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -28,6 +33,11 @@ export class UsersComponent implements OnInit {
       data => {this.allEmployees = data['data']; console.log(this.allEmployees)},
       error => console.log(error)
     );
+  //   this.route.paramMap.subscribe(params => {
+  //     let id = params.get('id');
+  //     console.log('ssup');
+  //     console.log(this.route.snapshot.paramMap.get('id'));      
+  //  });
   }
 
   onChange(employee){
@@ -45,6 +55,13 @@ export class UsersComponent implements OnInit {
       'manager_email': localStorage.getItem('employee_email')
     }
     this.allEmployees.push(employee);
+  }
+
+  selectEmployee(employee){
+    this.activeEmployee = employee;
+    this.activeEmployeeFlag = true;
+    console.log(this.activeEmployee);
+    this.router.navigateByUrl('/home/users/'+this.activeEmployee.employee_id);
   }
 
   onSubmit(){

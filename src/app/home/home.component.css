@@ -5,6 +5,7 @@ div.home{
 }
 app-menu{
     min-width: 50px;   height: 100%;
+    max-width: 50px;
     position: relative;
     display: flex;  flex-direction: column;
     background-color: #455672;
