@@ -32,9 +32,9 @@
           <input type=text class='taskDetail taskName' [(ngModel)]='task.task_name'/>
           <!-- <input type=number class='taskDetail timeSpent' [(ngModel)]='task.time_spent'/> -->
           <div class='taskDetail timeSpent'>
-            <span class='minus incIcon' (click)='task.time_spent = task.time_spent > 0 ? task.time_spent - 1 : task.time_spent;'></span>
+            <span class='minus incIcon' (click)='task.time_spent = task.time_spent > 0 ? task.time_spent - 0.5 : task.time_spent;'></span>
             <input type=number readonly class='timeSpentValue' [(ngModel)]='task.time_spent'/>
-            <span class='plus incIcon' (click)='task.time_spent = task.time_spent + 1;'></span>
+            <span class='plus incIcon' (click)='task.time_spent = task.time_spent + 0.5;'></span>
           </div>
         </div>
       </div>

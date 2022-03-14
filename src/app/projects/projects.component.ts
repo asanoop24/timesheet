@@ -27,7 +27,11 @@ export class ProjectsComponent implements OnInit {
   ngOnInit() {
     this.dataService.fetchProjects()
     .subscribe(
-      data => {if(data['data']) this.allProjects = data['data']},
+      data => {
+        if(data['data']) this.allProjects = data['data'];
+        this.allProjects.sort((a, b) => (a.project_name > b.project_name) ? 1 : -1)
+        console.log(this.allProjects);
+      },
       error => console.log(error)
     );
     this.newProjectForm = new FormGroup({
@@ -67,8 +71,11 @@ export class ProjectsComponent implements OnInit {
     this.dataService.updateProjects(this.allProjects);
   }
   
-  selectProject(project){
-    this.activeProject = this.activeProject ? undefined : project;
+  selectProject(employee){
+    this.activeProject = employee;
     this.activeProjectFlag = true;
+    console.log(this.activeProject);
+    // this.router.navigateByUrl('/home/users/'+this.activeEmployee.employee_id);
   }
+
 }

@@ -1,5 +1,32 @@
 <div class='projectsWorkspace'>
-  <!-- <div class='project' *ngFor='let project of allProjects'>{{ project.project_name }}</div> -->
+  <!-- <div class='project' *ngFor='let project of allprojects'>{{ project.project_name }}</div> -->
+  <!-- <div class='projectsHeader'>
+    <span class='projectsLabel'>PROJECTS</span>
+    <span class='newProjectIcon' (click)='addNewProject()'></span>
+  </div> -->
+  <div class='projectsBody'>
+    <div class='projectsList' [class.active]='activeProjectFlag'>
+      <div class='project' [ngClass]="activeProject==project ? 'active' : 'inactive'" *ngFor='let project of allProjects' (click)='selectProject(project)'>
+        <span class='projectPhoto'></span>
+        <div class="projectDetails">
+          <span class='projectName'>{{ project.project_name }}</span>
+          <!-- <span class='projectEmail'>{{ project.project_email }}</span> -->
+        </div>
+        <!-- <hr> -->
+      </div>
+    </div>
+
+    <!-- <div class='projectProfile'>
+      <app-project-profile></app-project-profile>
+    </div> -->
+
+  </div>
+</div>
+
+
+
+<!-- 
+<div class='projectsWorkspace'>
   <div class='projectsHeader'>
     <span class='projectsLabel'>PROJECTS</span>
     <span class='newProjectIcon' (click)='addNewProject()'></span>
@@ -39,11 +66,10 @@
           <input type='text' class='fieldValue projectOwner' id='projectOwner' required  formControlName='owner' />
           <label for='projectOwner'>OWNER</label>
         </div>
-        <!-- <span class='button submitButton' (click)='onSubmit()'>Submit</span> -->
         <button type='submit'>Done</button>
         <button type='button' (click)='cancelNewProject()'>Cancel</button>
       </form>
     </div>
 
   </div>
-</div>
+</div> -->

@@ -30,7 +30,10 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.dataService.fetchEmployees()
     .subscribe(
-      data => {this.allEmployees = data['data']; console.log(this.allEmployees)},
+      data => {this.allEmployees = data['data'];
+      console.log(this.allEmployees);
+      this.allEmployees.sort((a, b) => (a.employee_name > b.employee_name) ? 1 : -1);
+    },
       error => console.log(error)
     );
   //   this.route.paramMap.subscribe(params => {
